@@ -8,7 +8,7 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.menuText}>MENUU</Text>
+      <Text style={styles.menuText}>menuText</Text>
 
       <Text style={styles.menuTextUnder}>Which therapy do you want to practice?</Text>
 
@@ -17,7 +17,7 @@ export default function ProfileScreen() {
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonView}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Music')}>
-            <Text style={styles.buttonText}>MUSIC</Text>
+            <Text style={styles.buttonText}>ANNA IS THE BEST!!!!!!!!!</Text>
           </TouchableOpacity>
         </View>
 
