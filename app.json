@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "cfu-app-js-Hrytsenko",
+    "slug": "cfu-app-js-Hrytsenko",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./screens/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./screens/assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./screens/assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./screens/assets/favicon.png"
+    }
+  }
+}
