@@ -10,7 +10,7 @@ export default function HomeScreen() {
    <SafeAreaView style={styles.container}>
 
     <View style={styles.ground}>
-        <Text style={styles.menuText}>What are you felling right now?</Text>
+        <Text style={styles.menuText}>What are you felling right now?.</Text>
     </View>
    </SafeAreaView>
    
