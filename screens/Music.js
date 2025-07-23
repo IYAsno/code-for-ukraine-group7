@@ -1,51 +1,124 @@
-import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView, TouchableOpacity, Alert, Switch, } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
 
-    const navigation = useNavigation();
-  const handlePress = () => navigation.navigate("MainTabs");
+  return (
+    <SafeAreaView style={styles.container}>
 
- return (
-   <SafeAreaView style={styles.container}>
+      <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+        <Text style={styles.buttonText}>Back</Text>
+      </TouchableOpacity>
 
-    <View style={styles.ground}>
-        <Text style={styles.menuText}>What are you felling right now?</Text>
-    </View>
-   </SafeAreaView>
-   
- );
+      <View style={styles.ground}>
+        <Text style={styles.menuText}>What are you feeling right now?</Text>
+
+        <View style={styles.distanceBetween}>
+          <View style={styles.item}>
+            <Image style={styles.imageEmote} source={require('./assets/CatHehe.jpg')} />
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Text style={styles.buttonText}>Insomnia</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.item}>
+            <Image style={styles.imageEmote} source={require('./assets/Catcatcat.jpg')} />
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Text style={styles.buttonText}>Overwork</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.distanceBetween}>
+          <View style={styles.item}>
+            <Image style={styles.imageEmote} source={require('./assets/LohmatyCat.jpg')} />
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Text style={styles.buttonText}>Anxiety</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.item}>
+            <Image style={styles.imageEmote} source={require('./assets/SadCat.jpg')} />
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Text style={styles.buttonText}>Sadness</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.distanceBetween}>
+          <View style={styles.item}>
+            <Image style={styles.imageEmote} source={require('./assets/ChillCat.jpg')} />
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Text style={styles.buttonText}>I want to relax</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.item}>
+            <Image style={styles.imageEmote} source={require('./assets/MmmhCat.jpg')} />
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Text style={styles.buttonText}>Depression</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
- container: {
-   alignItems: 'center',
-   backgroundColor: '#441C63',
-   height: '100%',
-   justifyContent: 'center',
- },
- ground:{
-    backgroundColor: "#D5CEEF",
-    width: '95%',
-    height: '95%',
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#441C63',
+    height: '100%',
+    justifyContent: 'center',
+  },
+  ground: {
+    backgroundColor: '#D5CEEF',
+    width: '90%',
+    height: '90%',
     borderRadius: 15,
-    bottom: '2%',
-    position: 'absolute',
- },
-   menuText: {
+    bottom: '-3%',
+    alignItems: 'center',
+  },
+  menuText: {
     color: '#441C63',
     fontWeight: 'bold',
-    fontSize: 40,
+    fontSize: 32,
     textAlign: 'center',
-    marginTop: '4%',
     marginBottom: 20,
   },
-   myTabNavigation: {
-    backgroundColor: '#5C5A5A',
-    width: '120%',
-    height: '13%',
-    bottom: '-83%',
-    marginLeft: '-5%',
-   },
-}
-);
+  distanceBetween: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '90%',
+    marginTop: 15,
+  },
+  imageEmote: {
+    width: 135,
+    height: 135,
+    borderRadius: 10,
+    marginBottom: 8,
+  },
+  button: {
+    backgroundColor: '#7A4CA0',
+    borderRadius: 10,
+    borderWidth: 1,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    padding: 5,
+  },
+  buttonBack: {
+    position: 'absolute',
+    top: 30,
+    left: 20,
+    backgroundColor: '#D5CEEF',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+});

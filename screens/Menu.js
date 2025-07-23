@@ -8,7 +8,7 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.menuText}>menuText</Text>
+      <Text style={styles.menuText}>MENU</Text>
 
       <Text style={styles.menuTextUnder}>Which therapy do you want to practice?</Text>
 
