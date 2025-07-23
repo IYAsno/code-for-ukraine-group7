@@ -1,16 +1,19 @@
 import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView, TouchableOpacity, Alert, Switch, } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
+
+    const navigation = useNavigation();
+  const handlePress = () => navigation.navigate("MainTabs");
+
  return (
    <SafeAreaView style={styles.container}>
 
     <View style={styles.ground}>
-        <Text style={styles.menuText}>MUSIC</Text>
-
-        <Text style={styles.menuTextUnder}>Help for focusing, relaxing or sleeping.</Text>
-
+        <Text style={styles.menuText}>What are you felling right now?</Text>
     </View>
    </SafeAreaView>
+   
  );
 }
 
@@ -24,26 +27,25 @@ const styles = StyleSheet.create({
  ground:{
     backgroundColor: "#D5CEEF",
     width: '95%',
-    height: '85%',
+    height: '95%',
     borderRadius: 15,
-    bottom: '5%',
+    bottom: '2%',
+    position: 'absolute',
  },
    menuText: {
     color: '#441C63',
     fontWeight: 'bold',
-    fontSize: 50,
+    fontSize: 40,
     textAlign: 'center',
     marginTop: '4%',
-    marginRight: '45%',
     marginBottom: 20,
   },
-   menuTextUnder: {
-    color: '#441C63',
-    fontWeight: 'bold',
-    fontSize: 17,
-    textAlign: 'center',
-    bottom: 20,
-    marginRight: '5%'
-  },
+   myTabNavigation: {
+    backgroundColor: '#5C5A5A',
+    width: '120%',
+    height: '13%',
+    bottom: '-83%',
+    marginLeft: '-5%',
+   },
 }
 );

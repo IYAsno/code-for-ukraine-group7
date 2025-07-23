@@ -23,6 +23,10 @@ function MainTabs(){
       <Tab.Screen name="Menu " component={MenuScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={HomeScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Motivation" component={PhraseOfTheDayScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Music" component={MusicScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Notes" component={NotesScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Breath" component={BreathScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Questions" component={QuestionsScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }

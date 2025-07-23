@@ -17,7 +17,7 @@ export default function ProfileScreen() {
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonView}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Music')}>
-            <Text style={styles.buttonText}>ixjkgrkjzsrgjszlikregujl!!!!!!!!!</Text>
+            <Text style={styles.buttonText}>MUSIC</Text>
           </TouchableOpacity>
         </View>
 
@@ -34,7 +34,7 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.buttonView}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Notes')}>
             <Text style={styles.buttonText}>MY NOTES</Text>
           </TouchableOpacity>
         </View>
