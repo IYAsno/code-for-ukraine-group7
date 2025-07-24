@@ -34,7 +34,7 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.buttonView}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Notes')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NoteDog')}>
             <Text style={styles.buttonText}>MY NOTES</Text>
           </TouchableOpacity>
         </View>

@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#6F275F',
   },
   wrapper: {
-    backgroundColor: '#F8D6EE',
+    backgroundColor: '#C2CCE4',
     borderRadius: 20,
     margin: 20,
     padding: 20,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   photoButton: {
-    backgroundColor: '#B276AC',
+    backgroundColor: '#C2CCE4',
     padding: 12,
     borderRadius: 12,
     alignItems: 'center',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   saveButtonText: {
-    color: '#F8D6EE',
+    color: '#C2CCE4',
     fontSize: 18,
     fontWeight: 'bold',
   },
