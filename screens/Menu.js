@@ -40,7 +40,7 @@ export default function ProfileScreen() {
         </View>
       </View>
 
-      <Image style={styles.photoCat} source={require('./assets/CATCAT.png')} />
+      <Image style={styles.photoCat} source={require('./assets/CatBackFone.png')} />
     </SafeAreaView>
   );
 }
@@ -102,9 +102,9 @@ const styles = StyleSheet.create({
 
   photoCat: {
     position: 'absolute',
-    width: '80%',
+    width: '85%',
     height: '40%',
-    bottom: '-1.5%',
+    bottom: '-15.5%',
     marginLeft: '35%',
     resizeMode: 'contain',
   },

@@ -13,6 +13,7 @@ import BreathScreen from "./screens/Breath";
 import QuestionsScreen from "./screens/Questions";
 import NotesScreen from "./screens/Notes";
 import BreathingexScreen from "./screens/Breathingex";
+import MusicPlayScreen from "./screens/MusicPlay";
 
 
 const Stack = createNativeStackNavigator();
@@ -48,6 +49,7 @@ export default function App() {
        <Stack.Screen name="Questions" component={QuestionsScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="Notes" component={NotesScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="Breathingex" component={BreathingexScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="MusicPlay" component={MusicPlayScreen} options={{ headerShown: false }}/>
      </Stack.Navigator>
    </NavigationContainer>
  );
