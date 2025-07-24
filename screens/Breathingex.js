@@ -7,86 +7,123 @@ import {
   StyleSheet,
   Animated,
   TouchableOpacity,
-  Picker
 } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen() {
+  const shouldStop = useRef(false);
+
   const navigation = useNavigation();
-  const [cycles, setCycles] = useState(3);
-  const [currentPhase, setCurrentPhase] = useState("Start");
+  const [currentPhase, setCurrentPhase] = useState("");
   const [isRunning, setIsRunning] = useState(false);
+  const squareAnim = useRef(new Animated.ValueXY({ x: 0, y: 20 })).current; 
 
-  const squareAnim = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
-
-  const phases = ["Inhale", "Hold", "Exhale", "Hold"];
+  const phases = [ "Hold", "Breathe in", "Hold", "Breathe out",];
   const directions = [
-    { x: 100, y: 0 },
-    { x: 100, y: 100 },
+    { x: 0, y: 20 },
+    { x: 80, y: 20 },
+    { x: 80, y: 100 },
     { x: 0, y: 100 },
-    { x: 0, y: 0 },
   ];
 
+  const duration = 3500;
+  const totalCycles = 4;
+
   const startBreathing = async () => {
+    if (isRunning) return;
+    shouldStop.current = false;
     setIsRunning(true);
-    for (let i = 0; i < cycles; i++) {
-      for (let j = 0; j < 4; j++) {
-        setCurrentPhase(phases[j]);
-        await animateTo(directions[j]);
-        await wait(4000);
+
+    let firstStep = true;
+
+    for (let i = 0; i < totalCycles * directions.length; i++) {
+      const stepIndex = i % directions.length;
+      setCurrentPhase(phases[stepIndex]);
+
+      if (firstStep) {
+        animateTo(directions[stepIndex]);
+        firstStep = false;
+      } else {
+        await animateTo(directions[stepIndex]);
+      }
+
+      if (shouldStop.current) {
+        setCurrentPhase("Stopped");
+        setIsRunning(false);
+        return;
       }
     }
+
     setCurrentPhase("Done");
     setIsRunning(false);
+  };
+
+  const stopBreathing = () => {
+    if (isRunning) {
+      shouldStop.current = true;
+    }
   };
 
   const animateTo = (coords) => {
     return new Promise((resolve) => {
       Animated.timing(squareAnim, {
         toValue: coords,
-        duration: 1000,
+        duration: duration,
         useNativeDriver: false,
       }).start(() => resolve());
     });
   };
 
-  const wait = (ms) => new Promise((res) => setTimeout(res, ms));
-
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground style={styles.container1} source={require('./assets/breathingex.png')}>
+    <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+              <Text style={styles.buttonText5}> 
+              ㅤ&#60;ㅤ
+              </Text>
+            </TouchableOpacity>
+      <ImageBackground
+        style={styles.container1}
+        source={require("./assets/breathingex.png")}
+      >
+        <View style={styles.innerContent}>
+          <View style={styles.boxArea}>
+            <View style={styles.squarePath} />
+            <Animated.View
+              style={[
+                styles.movingCircle,
+                {
+                  transform: [
+                    { translateX: squareAnim.x },
+                    { translateY: squareAnim.y },
+                  ],
+                },
+              ]}
+            />
+          </View>
+
+          <Text style={styles.phase}>{currentPhase}</Text>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={startBreathing}
+            disabled={isRunning}
+          >
+            <Text style={styles.buttonText}>Start</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            
+            onPress={stopBreathing}
+            disabled={!isRunning}
+          >
+            <Text style={styles.buttonText1}>Stop</Text>
+          </TouchableOpacity>
 
          
-        <View style={styles.boxArea}>
-          <Animated.View
-            style={[
-              styles.movingSquare,
-              {
-                transform: [
-                  { translateX: squareAnim.x },
-                  { translateY: squareAnim.y },
-                ],
-              },
-            ]}
-          />
-          <View style={styles.squarePath} />
+            <Text style={styles.description}>
+            This is an easy breathing exercise to help you feel calm and relaxed. Just follow the moving square.
+            </Text>
         </View>
-
-        <Text style={styles.phase}>{currentPhase}</Text>
-
-       
-        <TouchableOpacity
-          style={styles.button}
-          onPress={startBreathing}
-          disabled={isRunning}
-        >
-          <Text style={styles.buttonText}>Start</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.description}>
-          This exercise helps reduce anxiety by syncing your breath with movement:
-          4 seconds inhale → hold → exhale → hold.
-        </Text>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -98,11 +135,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#451C63",
     height: "100%",
     justifyContent: "center",
-    
+  },
+  buttonBack: {
+    position: 'absolute',
+    top: 50     n    ,
+    left: 15,
+    backgroundColor: '#D5CEEF',
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: 'black',
   },
   container1: {
     backgroundColor: "#A7A3F1",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     width: 400,
     height: 750,
@@ -110,15 +155,13 @@ const styles = StyleSheet.create({
     marginTop: 35,
     position: "absolute",
   },
-  title: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 30,
-    color: "#4b0082",
+  innerContent: {
+    marginTop: '55%',
+    alignItems: "center",
   },
   boxArea: {
     width: 120,
-    height: 120,
+    height: 140,
     marginBottom: 30,
     position: "relative",
   },
@@ -128,15 +171,17 @@ const styles = StyleSheet.create({
     height: 100,
     borderWidth: 2,
     borderColor: "#451C63",
-    top: 0,
+    top: 20,
     left: 0,
   },
-  movingSquare: {
+  movingCircle: {
     width: 20,
     height: 20,
     backgroundColor: "#451C63",
     position: "absolute",
-    borderRadius: 5,
+    borderRadius: 50,
+    left: 0,
+    
   },
   phase: {
     fontSize: 24,
@@ -152,13 +197,20 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 20,
   },
   description: {
     marginTop: 30,
     textAlign: "center",
     fontSize: 16,
     color: "#333",
-    paddingHorizontal: 20,
+    width: 300,
+    fontWeight: "bold"
+  },
+  buttonText1: {
+    marginTop: 20
+  },
+  buttonText5: {
+    color: "black"
   },
 });
