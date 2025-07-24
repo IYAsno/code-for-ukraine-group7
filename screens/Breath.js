@@ -22,6 +22,11 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container}>
 
       <ImageBackground style={styles.container1} source={require('./assets/breathebackground.png')}>
+      <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+                    <Text style={styles.buttonText5}> 
+                    ㅤ&#60;ㅤ
+                    </Text>
+                  </TouchableOpacity>
       <View style={styles.start}>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Breathingex')}>
                   <Text style={styles.buttonText}>START</Text>
@@ -39,12 +44,12 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: "#451C63",
+    
     height: "100%",
     justifyContent: "center",
   },
   container1: {
-    backgroundColor: "#A7A3F1",
+
     justifyContent: "center",
     alignItems: "center",
     width: 400,
@@ -74,6 +79,20 @@ const styles = StyleSheet.create({
    textAlign: 'center',
    fontSize: 35,
    padding: '1.9%'
+
   },
+  buttonBack: {
+    position: 'absolute',
+    top: 25,
+    left: 25,
+    backgroundColor: '#451C63',
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  buttonText5: {
+    color: "#ffff"
+  },
+
 }
 );

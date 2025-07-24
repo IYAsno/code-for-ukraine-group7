@@ -136,15 +136,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
   },
-  buttonBack: {
-    position: 'absolute',
-    top: 45,
-    left: 15,
-    backgroundColor: '#D5CEEF',
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: 'black',
-  },
   container1: {
     backgroundColor: "#A7A3F1",
     justifyContent: "flex-start",
@@ -211,6 +202,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   buttonText5: {
-    color: "black"
+    color: "black",
+    position: "absolute",
   },
 });

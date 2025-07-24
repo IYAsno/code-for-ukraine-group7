@@ -35,6 +35,8 @@ function MainTabs(){
       <Tab.Screen name="Music" component={MusicScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Notes" component={NotesScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Breath" component={BreathScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Questions" component={QuestionsScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="WriteAnswers" component={WriteAnswersScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }
@@ -63,6 +65,8 @@ export default function App() {
        <Stack.Screen name="BreathDog" component={BreathDogScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="BreathingexDog" component={BreathingexDogScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="QuestionsDog" component={QuestionsDogScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="MusicPlay" component={MusicPlayScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="WriteAnswers" component={WriteAnswersScreen} options={{ headerShown: false }}/>
      </Stack.Navigator>
    </NavigationContainer>
  );

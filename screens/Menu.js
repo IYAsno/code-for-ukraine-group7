@@ -41,6 +41,7 @@ export default function ProfileScreen() {
       </View>
 
       <Image style={styles.photoCat} source={require('./assets/CatBackFone.png')} />
+      <Image style={styles.photoCat} source={require('./assets/CatPNG.png')} />
     </SafeAreaView>
   );
 }
