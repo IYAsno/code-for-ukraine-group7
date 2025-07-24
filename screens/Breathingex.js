@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   buttonBack: {
     position: 'absolute',
-    top: 50     n    ,
+    top: 50,
     left: 15,
     backgroundColor: '#D5CEEF',
     borderRadius: 25,
