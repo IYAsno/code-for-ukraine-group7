@@ -11,10 +11,10 @@ export default function HomeScreen() {
     <Image style={styles.backFoto} source={require('./assets/backFoto.png')} />
 
     <View style={styles.logo}>
-    <Image style={styles.logoImage} source={require('./assets/LOGO.png')} />
+    <Image style={styles.logoImage} source={require('./assets/newLogo.png')} />
 
     <View style={styles.buttonView}>
-              <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Menu')}>
+              <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChoseScreen')}>
                 <Text style={styles.buttonText}>.</Text>
               </TouchableOpacity>
             </View>
@@ -40,10 +40,10 @@ justifyContent: 'center',
     position: 'absolute',
  },
  logoImage: {
-    width: '70%',
-    height: '70%',
-    marginLeft: '15%',
-    bottom: '18%',
+    width: '150%',
+    height: '150%',
+    marginLeft: '-25%',
+    bottom: '-29%',
     position: 'absolute',
  },
    backFoto: {

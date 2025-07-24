@@ -12,13 +12,12 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen() {
   const shouldStop = useRef(false);
-
   const navigation = useNavigation();
   const [currentPhase, setCurrentPhase] = useState("");
   const [isRunning, setIsRunning] = useState(false);
-  const squareAnim = useRef(new Animated.ValueXY({ x: 0, y: 20 })).current; 
+  const squareAnim = useRef(new Animated.ValueXY({ x: 0, y: 20 })).current;
 
-  const phases = [ "Hold", "Breathe in", "Hold", "Breathe out",];
+  const phases = ["Hold", "Breathe in", "Hold", "Breathe out"];
   const directions = [
     { x: 0, y: 20 },
     { x: 80, y: 20 },
@@ -34,18 +33,11 @@ export default function HomeScreen() {
     shouldStop.current = false;
     setIsRunning(true);
 
-    let firstStep = true;
-
     for (let i = 0; i < totalCycles * directions.length; i++) {
       const stepIndex = i % directions.length;
       setCurrentPhase(phases[stepIndex]);
 
-      if (firstStep) {
-        animateTo(directions[stepIndex]);
-        firstStep = false;
-      } else {
-        await animateTo(directions[stepIndex]);
-      }
+      await animateTo(directions[stepIndex]);
 
       if (shouldStop.current) {
         setCurrentPhase("Stopped");
@@ -76,11 +68,10 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-    <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
-              <Text style={styles.buttonText5}> 
-              ㅤ&#60;ㅤ
-              </Text>
-            </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+        <Text style={styles.buttonText5}>ㅤ&#60;ㅤ</Text>
+      </TouchableOpacity>
+
       <ImageBackground
         style={styles.container1}
         source={require("./assets/breathingex.png")}
@@ -111,18 +102,14 @@ export default function HomeScreen() {
             <Text style={styles.buttonText}>Start</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            
-            onPress={stopBreathing}
-            disabled={!isRunning}
-          >
+          <TouchableOpacity onPress={stopBreathing} disabled={!isRunning}>
             <Text style={styles.buttonText1}>Stop</Text>
           </TouchableOpacity>
 
-         
-            <Text style={styles.description}>
-            This is an easy breathing exercise to help you feel calm and relaxed. Just follow the moving square.
-            </Text>
+          <Text style={styles.description}>
+            This is an easy breathing exercise to help you feel calm and relaxed.
+            Just follow the moving square.
+          </Text>
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -137,13 +124,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonBack: {
-    position: 'absolute',
+    position: "absolute",
     top: 45,
     left: 15,
-    backgroundColor: '#D5CEEF',
+    backgroundColor: "#D5CEEF",
     borderRadius: 25,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: "black",
+    zIndex: 2,
+  },
+  buttonText5: {
+    color: "black",
+    fontSize: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   container1: {
     backgroundColor: "#A7A3F1",
@@ -156,7 +150,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   innerContent: {
-    marginTop: '55%',
+    marginTop: "55%",
     alignItems: "center",
   },
   boxArea: {
@@ -181,7 +175,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 50,
     left: 0,
-    
   },
   phase: {
     fontSize: 24,
@@ -199,18 +192,18 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
   },
+  buttonText1: {
+    marginTop: 20,
+    fontSize: 20,
+    color: "#451C63",
+    fontWeight: "bold",
+  },
   description: {
     marginTop: 30,
     textAlign: "center",
     fontSize: 16,
     color: "#333",
     width: 300,
-    fontWeight: "bold"
-  },
-  buttonText1: {
-    marginTop: 20
-  },
-  buttonText5: {
-    color: "black"
+    fontWeight: "bold",
   },
 });

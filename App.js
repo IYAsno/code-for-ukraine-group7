@@ -14,6 +14,13 @@ import QuestionsScreen from "./screens/Questions";
 import NotesScreen from "./screens/Notes";
 import BreathingexScreen from "./screens/Breathingex";
 import MusicPlayScreen from "./screens/MusicPlay";
+import ChoseScreenScreen from "./screens/ChoseScreen";
+import MenuDogScreen from "./screens/MenuDog";
+import MusicDogScreen from "./screens/MusicDog";
+import MusicDogPlayScreen from "./screens/MusicDogPlay";
+import BreathDogScreen from "./screens/BreathDog";
+import BreathingexDogScreen from "./screens/BreathingexDog.js";
+import QuestionsDogScreen from "./screens/QuestionsDog.js";
 
 
 const Stack = createNativeStackNavigator();
@@ -22,13 +29,12 @@ const Tab = createBottomTabNavigator();
 function MainTabs(){
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Menu " component={MenuScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Menu" component={MenuScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={HomeScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Motivation" component={PhraseOfTheDayScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Music" component={MusicScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Notes" component={NotesScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Breath" component={BreathScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Questions" component={QuestionsScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }
@@ -50,6 +56,13 @@ export default function App() {
        <Stack.Screen name="Notes" component={NotesScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="Breathingex" component={BreathingexScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="MusicPlay" component={MusicPlayScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="ChoseScreen" component={ChoseScreenScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="MenuDog" component={MenuDogScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="MusicDog" component={MusicDogScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="MusicDogPlay" component={MusicDogPlayScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="BreathDog" component={BreathDogScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="BreathingexDog" component={BreathingexDogScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="QuestionsDog" component={QuestionsDogScreen} options={{ headerShown: false }}/>
      </Stack.Navigator>
    </NavigationContainer>
  );

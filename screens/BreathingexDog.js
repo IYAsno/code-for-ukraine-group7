@@ -11,14 +11,13 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen() {
-  const shouldStop = useRef(false);
-
   const navigation = useNavigation();
-  const [currentPhase, setCurrentPhase] = useState("");
+  const [currentPhase, setCurrentPhase] = useState("Start");
   const [isRunning, setIsRunning] = useState(false);
   const squareAnim = useRef(new Animated.ValueXY({ x: 0, y: 20 })).current; 
+  const shouldStop = useRef(false);
 
-  const phases = [ "Hold", "Breathe in", "Hold", "Breathe out",];
+  const phases = ["Inhale", "Hold", "Exhale", "Hold"];
   const directions = [
     { x: 0, y: 20 },
     { x: 80, y: 20 },
@@ -26,7 +25,7 @@ export default function HomeScreen() {
     { x: 0, y: 100 },
   ];
 
-  const duration = 3500;
+  const duration = 4000;
   const totalCycles = 4;
 
   const startBreathing = async () => {
@@ -76,11 +75,13 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-    <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
-              <Text style={styles.buttonText5}> 
+
+      <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+              <Text style={styles.buttonText}> 
               ㅤ&#60;ㅤ
               </Text>
             </TouchableOpacity>
+
       <ImageBackground
         style={styles.container1}
         source={require("./assets/breathingex.png")}
@@ -112,17 +113,17 @@ export default function HomeScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            
+            style={[styles.button, { backgroundColor: "#D23F3F", marginTop: 10 }]}
             onPress={stopBreathing}
             disabled={!isRunning}
           >
-            <Text style={styles.buttonText1}>Stop</Text>
+            <Text style={styles.buttonText}>Stop</Text>
           </TouchableOpacity>
 
-         
-            <Text style={styles.description}>
-            This is an easy breathing exercise to help you feel calm and relaxed. Just follow the moving square.
-            </Text>
+          <Text style={styles.description}>
+            This exercise helps reduce anxiety by syncing your breath with movement:
+            4 seconds inhale → hold → exhale → hold.
+          </Text>
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -136,15 +137,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
   },
-  buttonBack: {
-    position: 'absolute',
-    top: 45,
-    left: 15,
-    backgroundColor: '#D5CEEF',
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: 'black',
-  },
   container1: {
     backgroundColor: "#A7A3F1",
     justifyContent: "flex-start",
@@ -156,7 +148,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   innerContent: {
-    marginTop: '55%',
+    marginTop: '55%', // ⬇️ зсув усього блоку вниз на 30 пікселів
     alignItems: "center",
   },
   boxArea: {
@@ -181,7 +173,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 50,
     left: 0,
-    
+    // видалено top: 0, бо керуємо через анімацію translateY
   },
   phase: {
     fontSize: 24,
@@ -197,20 +189,23 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: 18,
   },
   description: {
     marginTop: 30,
     textAlign: "center",
     fontSize: 16,
     color: "#333",
-    width: 300,
-    fontWeight: "bold"
+    paddingHorizontal: 20,
   },
-  buttonText1: {
-    marginTop: 20
-  },
-  buttonText5: {
-    color: "black"
+  buttonBack: {
+    position: 'absolute',
+    top: 30,
+    left: 20,
+    backgroundColor: '#D5CEEF',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'black',
   },
 });
+ 

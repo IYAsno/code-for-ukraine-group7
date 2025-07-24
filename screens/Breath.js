@@ -20,6 +20,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+
       <ImageBackground style={styles.container1} source={require('./assets/breathebackground.png')}>
       <View style={styles.start}>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Breathingex')}>
@@ -73,6 +74,6 @@ const styles = StyleSheet.create({
    textAlign: 'center',
    fontSize: 35,
    padding: '1.9%'
-
   },
-});
+}
+);
