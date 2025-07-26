@@ -16,15 +16,15 @@ export default function HomeScreen() {
 
         <View style={styles.distanceBetween}>
           <View style={styles.item}>
-            <Image style={styles.imageEmote} source={require('./assets/CatHehe.jpg')} />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Image style={styles.imageEmote} source={require('./assets/CatHehe.jpg')} />
               <Text style={styles.buttonText}>Insomnia</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.item}>
-            <Image style={styles.imageEmote} source={require('./assets/Catcatcat.jpg')} />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Image style={styles.imageEmote} source={require('./assets/Catcatcat.jpg')} />
               <Text style={styles.buttonText}>Overwork</Text>
             </TouchableOpacity>
           </View>
@@ -32,15 +32,15 @@ export default function HomeScreen() {
 
         <View style={styles.distanceBetween}>
           <View style={styles.item}>
-            <Image style={styles.imageEmote} source={require('./assets/LohmatyCat.jpg')} />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Image style={styles.imageEmote} source={require('./assets/LohmatyCat.jpg')} />
               <Text style={styles.buttonText}>Anxiety</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.item}>
-            <Image style={styles.imageEmote} source={require('./assets/SadCat.jpg')} />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+               <Image style={styles.imageEmote} source={require('./assets/SadCat.jpg')} />
               <Text style={styles.buttonText}>Sadness</Text>
             </TouchableOpacity>
           </View>
@@ -48,20 +48,34 @@ export default function HomeScreen() {
 
         <View style={styles.distanceBetween}>
           <View style={styles.item}>
-            <Image style={styles.imageEmote} source={require('./assets/ChillCat.jpg')} />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Image style={styles.imageEmote} source={require('./assets/ChillCat.jpg')} />
               <Text style={styles.buttonText}>I want to relax</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.item}>
-            <Image style={styles.imageEmote} source={require('./assets/MmmhCat.jpg')} />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MusicPlay')}>
+              <Image style={styles.imageEmote} source={require('./assets/MmmhCat.jpg')} />
               <Text style={styles.buttonText}>Depression</Text>
             </TouchableOpacity>
           </View>
         </View>
 
+      </View>
+
+      <View style={styles.TabNavigationBar}>
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Menu')}>
+          <Image style={styles.tabIcon} source={require('./assets/MenuButtonImage.png')} />
+        </TouchableOpacity>
+      
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Notes')}>
+          <Image style={styles.tabIconStar} source={require('./assets/StarPlusImage.png')} />
+        </TouchableOpacity>
+      
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Motivation')}>
+          <Image style={styles.tabIconHeart} source={require('./assets/HeartFoto.png')} />
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -77,9 +91,9 @@ const styles = StyleSheet.create({
   ground: {
     backgroundColor: '#D5CEEF',
     width: '90%',
-    height: '90%',
+    height: '83%',
     borderRadius: 15,
-    bottom: '-3%',
+    bottom: '0.5%',
     alignItems: 'center',
   },
   menuText: {
@@ -121,4 +135,41 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
   },
+    TabNavigationBar: {
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  backgroundColor: '#8B4B99',
+  width: '100%',
+  height: '8%',
+  borderTopWidth: 0.5,
+  borderColor: '#ffffff',
+  position: 'absolute',
+  bottom: 0,
+},
+
+tabButton: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+tabIcon: {
+  width: 40,
+  height: 40,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
+tabIconStar: {
+  width: 70,
+  height: 50,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
+tabIconHeart: {
+  width: 75,
+  height: 50,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
 });

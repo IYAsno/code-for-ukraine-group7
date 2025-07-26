@@ -1,39 +1,68 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
+  Image,
   SafeAreaView,
   StyleSheet,
-  TextInput,
+  ScrollView,
   TouchableOpacity,
-  Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from '@expo/vector-icons';
 
-export default function AnswerScreen({ route }) {
-  const { question } = route.params;
-  const [answer, setAnswer] = useState("");
+const questions = [
+  "What am I feeling right now and why?",
+  "What do I need in this moment?",
+  "What have I been avoiding lately?",
+  "What am I grateful for today?",
+  "How can I take better care of myself?",
+  "What thought patterns are holding me back?",
+  "What do I want to let go of?",
+];
 
-  const handleSave = () => {
-    Alert.alert("Saved", "Your answer has been saved");
-    setAnswer("");
+export default function HomeScreen() {
+  const navigation = useNavigation();
+
+  const goToAnswerScreen = (question) => {
+    navigation.navigate("WriteAnswers", { question });
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
-        <Text style={styles.question}>{question}</Text>
-        <TextInput
-          style={styles.input}
-          multiline
-          placeholder="Write your thoughts here..."
-          value={answer}
-          onChangeText={setAnswer}
-          placeholderTextColor="#999"
-        />
-        <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-          <Text style={styles.saveText}>Save</Text>
-        </TouchableOpacity>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={styles.header}>Questions for Self-Discovery</Text>
+
+          {questions.map((q, index) => (
+            <View key={index} style={styles.questionBlock}>
+              <Text style={styles.questionText}>{q}</Text>
+              <TouchableOpacity
+                style={styles.plusButton}
+                onPress={() => goToAnswerScreen(q)}
+              >
+                <Ionicons name="add-circle-outline" size={28} color="#fff" />
+              </TouchableOpacity>
+            </View>
+          ))}
+
+        </ScrollView>
       </View>
+
+      <View style={styles.TabNavigationBar}>
+              <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('MenuDog')}>
+                <Image style={styles.tabIcon} source={require('./assets/MenuButtonImage.png')} />
+              </TouchableOpacity>
+            
+              <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('NoteGog')}>
+                <Image style={styles.tabIconStar} source={require('./assets/StarPlusImage.png')} />
+              </TouchableOpacity>
+            
+              <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('MotivationDog')}>
+                <Image style={styles.tabIconHeart} source={require('./assets/DogCatChange1.png')} />
+              </TouchableOpacity>
+            </View>
+
     </SafeAreaView>
   );
 }
@@ -48,33 +77,71 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "#F8D6EE",
     width: "90%",
-    borderRadius: 20,
+    height: "85%",
+    borderRadius: 25,
     padding: 20,
+    marginTop: 40,
   },
-  question: {
-    fontSize: 22,
-    color: "#6F275F",
+  header: {
+    fontSize: 28,
     fontWeight: "bold",
-    marginBottom: 15,
+    color: "#6F275F",
+    textAlign: "center",
+    marginBottom: 20,
   },
-  input: {
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    height: 150,
-    textAlignVertical: "top",
-    padding: 15,
-    fontSize: 16,
-    color: "#333",
-  },
-  saveButton: {
+  questionBlock: {
     backgroundColor: "#6F275F",
-    marginTop: 20,
-    paddingVertical: 12,
-    borderRadius: 12,
+    borderRadius: 18,
+    padding: 15,
+    marginVertical: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
   },
-  saveText: {
+  questionText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 16,
+    flex: 1,
+    paddingRight: 10,
   },
+  plusButton: {
+    padding: 5,
+  },
+  TabNavigationBar: {
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  backgroundColor: '#8B4B99',
+  width: '100%',
+  height: '8%',
+  borderTopWidth: 0.5,
+  borderColor: '#ffffff',
+  position: 'absolute',
+  bottom: 0,
+},
+
+tabButton: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+tabIcon: {
+  width: 40,
+  height: 40,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
+tabIconStar: {
+  width: 70,
+  height: 50,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
+tabIconHeart: {
+  width: 75,
+  height: 50,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
 });
