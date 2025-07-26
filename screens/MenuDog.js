@@ -22,7 +22,7 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.buttonView}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Breath')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BreathDog')}>
             <Text style={styles.buttonText}>BREATH</Text>
           </TouchableOpacity>
         </View>

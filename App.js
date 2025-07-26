@@ -21,6 +21,7 @@ import MusicDogPlayScreen from "./screens/MusicDogPlay";
 import BreathDogScreen from "./screens/BreathDog";
 import BreathingexDogScreen from "./screens/BreathingexDog.js";
 import QuestionsDogScreen from "./screens/QuestionsDog.js";
+import WriteAnswersScreen from "./screens/WriteAnswers.js";
 
 
 const Stack = createNativeStackNavigator();
@@ -64,8 +65,7 @@ export default function App() {
        <Stack.Screen name="MusicDogPlay" component={MusicDogPlayScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="BreathDog" component={BreathDogScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="BreathingexDog" component={BreathingexDogScreen} options={{ headerShown: false }}/>
-       <Stack.Screen name="QuestionsDog" component={QuestionsDogScreen} options={{ headerShown: false }}/>
-       <Stack.Screen name="MusicPlay" component={MusicPlayScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="QuestionsDog" component={QuestionsDogScreen} options={{ headerShown: false }}/> 
        <Stack.Screen name="WriteAnswers" component={WriteAnswersScreen} options={{ headerShown: false }}/>
      </Stack.Navigator>
    </NavigationContainer>

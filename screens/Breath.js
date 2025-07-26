@@ -21,12 +21,17 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
 
-      <ImageBackground style={styles.container1} source={require('./assets/breathebackground.png')}>
+      <ImageBackground style={styles.container1} source={require('./assets/breathe.png')}>
+       <Text style={styles.description}>
+                              Square Breathing is a simple breathing exercise that helps you feel calm and focused.
+
+                            </Text>
       <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
                     <Text style={styles.buttonText5}> 
                     ㅤ&#60;ㅤ
                     </Text>
                   </TouchableOpacity>
+                  
       <View style={styles.start}>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Breathingex')}>
                   <Text style={styles.buttonText}>START</Text>
@@ -55,7 +60,7 @@ const styles = StyleSheet.create({
     width: 400,
     height: 750,
     borderRadius: 20,
-    marginTop: 35,
+    marginTop: 60,
     position: "absolute"
   },
   start: {
@@ -92,6 +97,14 @@ const styles = StyleSheet.create({
   },
   buttonText5: {
     color: "#ffff"
+  },
+  description: {
+    marginTop: 60,
+    textAlign: "center",
+    fontSize: 16,
+    color: "#333",
+    paddingHorizontal: 20,
+    fontWeight: "bold"
   },
 
 }

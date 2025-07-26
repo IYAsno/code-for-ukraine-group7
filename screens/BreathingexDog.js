@@ -11,13 +11,14 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
-  const [currentPhase, setCurrentPhase] = useState("Start");
-  const [isRunning, setIsRunning] = useState(false);
-  const squareAnim = useRef(new Animated.ValueXY({ x: 0, y: 20 })).current; 
   const shouldStop = useRef(false);
 
-  const phases = ["Inhale", "Hold", "Exhale", "Hold"];
+  const navigation = useNavigation();
+  const [currentPhase, setCurrentPhase] = useState("");
+  const [isRunning, setIsRunning] = useState(false);
+  const squareAnim = useRef(new Animated.ValueXY({ x: 0, y: 20 })).current; 
+
+  const phases = [ "Hold", "Breathe in", "Hold", "Breathe out",];
   const directions = [
     { x: 0, y: 20 },
     { x: 80, y: 20 },
@@ -25,7 +26,7 @@ export default function HomeScreen() {
     { x: 0, y: 100 },
   ];
 
-  const duration = 4000;
+  const duration = 3500;
   const totalCycles = 4;
 
   const startBreathing = async () => {
@@ -75,16 +76,14 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
-      <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
-              <Text style={styles.buttonText}> 
+    <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+              <Text style={styles.buttonText5}> 
               ㅤ&#60;ㅤ
               </Text>
             </TouchableOpacity>
-
       <ImageBackground
         style={styles.container1}
-        source={require("./assets/breathingex.png")}
+        source={require("./assets/breathexdog.png")}
       >
         <View style={styles.innerContent}>
           <View style={styles.boxArea}>
@@ -113,17 +112,17 @@ export default function HomeScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#D23F3F", marginTop: 10 }]}
+            
             onPress={stopBreathing}
             disabled={!isRunning}
           >
-            <Text style={styles.buttonText}>Stop</Text>
+            <Text style={styles.buttonText1}>Stop</Text>
           </TouchableOpacity>
 
-          <Text style={styles.description}>
-            This exercise helps reduce anxiety by syncing your breath with movement:
-            4 seconds inhale → hold → exhale → hold.
-          </Text>
+         
+            <Text style={styles.description}>
+            This is an easy breathing exercise to help you feel calm and relaxed. Just follow the moving square.
+            </Text>
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -133,12 +132,12 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: "#451C63",
+    backgroundColor: "#2B3A6C",
     height: "100%",
     justifyContent: "center",
   },
   container1: {
-    backgroundColor: "#A7A3F1",
+    backgroundColor: "#8EA0CF",
     justifyContent: "flex-start",
     alignItems: "center",
     width: 400,
@@ -148,7 +147,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   innerContent: {
-    marginTop: '55%', // ⬇️ зсув усього блоку вниз на 30 пікселів
+    marginTop: '55%',
     alignItems: "center",
   },
   boxArea: {
@@ -162,26 +161,26 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderWidth: 2,
-    borderColor: "#451C63",
+    borderColor: "#2B3A6C",
     top: 20,
     left: 0,
   },
   movingCircle: {
     width: 20,
     height: 20,
-    backgroundColor: "#451C63",
+    backgroundColor: "#2B3A6C",
     position: "absolute",
     borderRadius: 50,
     left: 0,
-    // видалено top: 0, бо керуємо через анімацію translateY
+    
   },
   phase: {
     fontSize: 24,
     marginBottom: 20,
-    color: "#4b0082",
+    color: "#2B3A6C",
   },
   button: {
-    backgroundColor: "#451C63",
+    backgroundColor: "#2B3A6C",
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 10,
@@ -189,23 +188,21 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 20,
   },
   description: {
     marginTop: 30,
     textAlign: "center",
     fontSize: 16,
     color: "#333",
-    paddingHorizontal: 20,
+    width: 300,
+    fontWeight: "bold"
   },
-  buttonBack: {
-    position: 'absolute',
-    top: 30,
-    left: 20,
-    backgroundColor: '#D5CEEF',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'black',
+  buttonText1: {
+    marginTop: 20
+  },
+  buttonText5: {
+    color: "black",
+    position: "absolute",
   },
 });
- 
