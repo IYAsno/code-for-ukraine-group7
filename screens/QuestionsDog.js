@@ -25,7 +25,7 @@ export default function HomeScreen() {
   const navigation = useNavigation();
 
   const goToAnswerScreen = (question) => {
-    navigation.navigate("WriteAnswersDog", { question });
+    navigation.navigate("WriteAnswers", { question });
   };
 
   return (
@@ -45,6 +45,7 @@ export default function HomeScreen() {
               </TouchableOpacity>
             </View>
           ))}
+
         </ScrollView>
       </View>
 
@@ -69,7 +70,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2B3A6C",
+    backgroundColor: "#6F275F",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#2B3A6C",
+    color: "#6F275F",
     textAlign: "center",
     marginBottom: 20,
   },
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   flexDirection: 'row',
   justifyContent: 'space-around',
   alignItems: 'center',
-  backgroundColor: '#2B3A6C',
+  backgroundColor: '#8B4B99',
   width: '100%',
   height: '8%',
   borderTopWidth: 0.5,

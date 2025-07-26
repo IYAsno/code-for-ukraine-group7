@@ -21,14 +21,18 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
 
-      <ImageBackground style={styles.container1} source={require('./assets/breathebackground.png')}>
+      <ImageBackground style={styles.container1} source={require('./assets/breathedog.png')}>
+       <Text style={styles.description}>
+                              Square Breathing is a simple breathing exercise that helps you feel calm and focused.
+
+                            </Text>
       <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
                     <Text style={styles.buttonText5}> 
                     ㅤ&#60;ㅤ
                     </Text>
                   </TouchableOpacity>
       <View style={styles.start}>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Breathingex')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BreathingexDog')}>
                   <Text style={styles.buttonText}>START</Text>
                 </TouchableOpacity>
                 </View>
@@ -37,7 +41,6 @@ export default function HomeScreen() {
       <View>
         
       </View>
-
       <View style={styles.TabNavigationBar}>
         <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('MenuDog')}>
           <Image style={styles.tabIcon} source={require('./assets/MenuButtonImage.png')} />
@@ -51,7 +54,6 @@ export default function HomeScreen() {
           <Image style={styles.tabIconHeart} source={require('./assets/HeartFoto.png')} />
         </TouchableOpacity>
       </View>
-
     </SafeAreaView>
   );
 }
@@ -70,11 +72,11 @@ const styles = StyleSheet.create({
     width: 400,
     height: 800,
     borderRadius: 20,
-    marginTop: 35,
+    marginTop: 40,
     position: "absolute"
   },
   start: {
-    backgroundColor: "#384476",
+    backgroundColor: "#2B3A6C",
     borderRadius: 20,
     width: '60%',
     height: '8%',
@@ -94,19 +96,26 @@ const styles = StyleSheet.create({
    textAlign: 'center',
    fontSize: 35,
    padding: '1.9%'
-
   },
   buttonBack: {
     position: 'absolute',
     top: 25,
     left: 25,
-    backgroundColor: '#384476',
+    backgroundColor: '#2B3A6C',
     borderRadius: 25,
     borderWidth: 1,
     borderColor: 'black',
   },
   buttonText5: {
     color: "#ffff"
+  },
+  description: {
+    marginTop: 65,
+    textAlign: "center",
+    fontSize: 16,
+    color: "#333",
+    paddingHorizontal: 20,
+    fontWeight: "bold"
   },
   TabNavigationBar: {
   flexDirection: 'row',

@@ -45,6 +45,7 @@ export default function HomeScreen() {
               </TouchableOpacity>
             </View>
           ))}
+
         </ScrollView>
       </View>
 

@@ -51,7 +51,7 @@ export default function App() {
        <Stack.Screen name="MusicDogPlay" component={MusicDogPlayScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="BreathDog" component={BreathDogScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="BreathingexDog" component={BreathingexDogScreen} options={{ headerShown: false }}/>
-       <Stack.Screen name="QuestionsDog" component={QuestionsDogScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="QuestionsDog" component={QuestionsDogScreen} options={{ headerShown: false }}/> 
        <Stack.Screen name="WriteAnswers" component={WriteAnswersScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="NoteDog" component={NoteDogScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="MotivationDog" component={MotivationDogScreen} options={{ headerShown: false }}/>
