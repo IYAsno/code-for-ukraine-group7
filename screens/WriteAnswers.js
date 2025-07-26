@@ -1,17 +1,80 @@
-import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView, TouchableOpacity, Alert, Switch, } from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 
-export default function HomeScreen() {
- return (
-   <SafeAreaView style={styles.container}>
-   </SafeAreaView>
- );
+export default function AnswerScreen({ route }) {
+  const { question } = route.params;
+  const [answer, setAnswer] = useState("");
+
+  const handleSave = () => {
+    Alert.alert("Saved", "Your answer has been saved");
+    setAnswer("");
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.card}>
+        <Text style={styles.question}>{question}</Text>
+        <TextInput
+          style={styles.input}
+          multiline
+          placeholder="Write your thoughts here..."
+          value={answer}
+          onChangeText={setAnswer}
+          placeholderTextColor="#999"
+        />
+        <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+          <Text style={styles.saveText}>Save</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
- container: {
-   alignItems: 'center',
-   backgroundColor: 'fff',
-   height: '100%',
-justifyContent: 'center',
- },
+  container: {
+    flex: 1,
+    backgroundColor: "#6F275F",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  card: {
+    backgroundColor: "#F8D6EE",
+    width: "90%",
+    borderRadius: 20,
+    padding: 20,
+  },
+  question: {
+    fontSize: 22,
+    color: "#6F275F",
+    fontWeight: "bold",
+    marginBottom: 15,
+  },
+  input: {
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    height: 150,
+    textAlignVertical: "top",
+    padding: 15,
+    fontSize: 16,
+    color: "#333",
+  },
+  saveButton: {
+    backgroundColor: "#6F275F",
+    marginTop: 20,
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  saveText: {
+    color: "#fff",
+    fontSize: 18,
+  },
 });

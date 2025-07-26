@@ -76,16 +76,19 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-    <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
-              <Text style={styles.buttonText5}> 
-              ㅤ&#60;ㅤ
-              </Text>
-            </TouchableOpacity>
+
       <ImageBackground
         style={styles.container1}
         source={require("./assets/breathingex.png")}
       >
         <View style={styles.innerContent}>
+
+           <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+              <Text style={styles.buttonText5}> 
+              Backㅤ
+              </Text>
+            </TouchableOpacity>
+            
           <View style={styles.boxArea}>
             <View style={styles.squarePath} />
             <Animated.View
@@ -124,7 +127,7 @@ export default function HomeScreen() {
             This is an easy breathing exercise to help you feel calm and relaxed. Just follow the moving square.
             </Text>
         </View>
-      </ImageBackground>
+      </ImageBackground>            
     </SafeAreaView>
   );
 }
@@ -205,4 +208,16 @@ const styles = StyleSheet.create({
     color: "black",
     position: "absolute",
   },
+  buttonBack: {
+  position: 'absolute',
+  height: '5%',
+  top: '-57%',
+  left: '-7%', // 👈 перенесено вліво
+  backgroundColor: '#F8D6EE', // м’який рожевий контраст
+  borderRadius: 20,
+  borderWidth: 2,
+  borderColor: '#451C63', // темно-фіолетовий для контрасту
+  paddingHorizontal: 15,
+  paddingVertical: 5,
+},
 });

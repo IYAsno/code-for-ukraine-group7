@@ -21,27 +21,14 @@ import MusicDogPlayScreen from "./screens/MusicDogPlay";
 import BreathDogScreen from "./screens/BreathDog";
 import BreathingexDogScreen from "./screens/BreathingexDog.js";
 import QuestionsDogScreen from "./screens/QuestionsDog.js";
+import WriteAnswersScreen from "./screens/WriteAnswers.js";
+import NoteDogScreen from "./screens/NoteDog.js";
+import MotivationDogScreen from "./screens/MotivationDog";
+import WriteAnswersDogScreen from "./screens/WriteAnswersDog";
+
 
 
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
-function MainTabs(){
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Menu" component={MenuScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Profile" component={HomeScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Motivation" component={PhraseOfTheDayScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Music" component={MusicScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Notes" component={NotesScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Breath" component={BreathScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Questions" component={QuestionsScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="WriteAnswers" component={WriteAnswersScreen} options={{ headerShown: false }} />
-    </Tab.Navigator>
-  );
-}
-
-
 
 export default function App() {
  return (
@@ -50,7 +37,7 @@ export default function App() {
        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="Motivation" component={PhraseOfTheDayScreen} options={{ headerShown: false }}/>
-       <Stack.Screen name="Menu" component={MainTabs} options={{ headerShown: false }}/>
+       <Stack.Screen name="Menu" component={MenuScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="Music" component={MusicScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="Input" component={InputScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="Breath" component={BreathScreen} options={{ headerShown: false }}/>
@@ -65,8 +52,10 @@ export default function App() {
        <Stack.Screen name="BreathDog" component={BreathDogScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="BreathingexDog" component={BreathingexDogScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="QuestionsDog" component={QuestionsDogScreen} options={{ headerShown: false }}/>
-       <Stack.Screen name="MusicPlay" component={MusicPlayScreen} options={{ headerShown: false }}/>
        <Stack.Screen name="WriteAnswers" component={WriteAnswersScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="NoteDog" component={NoteDogScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="MotivationDog" component={MotivationDogScreen} options={{ headerShown: false }}/>
+       <Stack.Screen name="WriteAnswersDog" component={WriteAnswersDogScreen} options={{ headerShown: false }}/>
      </Stack.Navigator>
    </NavigationContainer>
  );

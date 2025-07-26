@@ -63,41 +63,63 @@ export default function NotesScreen() {
         <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
 
-      <View style={styles.wrapper}>
-        <Text style={styles.title}>📝 My Notes</Text>
+      <View style={styles.contentWrapper}>
+        <View style={styles.notesArea}>
+          <Text style={styles.title}>NOTES</Text>
+          
+          <TextInput
+            style={styles.input}
+            placeholder="Enter a note..."
+            placeholderTextColor="#888"
+            multiline
+            value={text}
+            onChangeText={setText}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Type your thoughts here..."
-          placeholderTextColor="#888"
-          multiline
-          value={text}
-          onChangeText={setText}
-        />
+          <TouchableOpacity style={styles.photoButton} onPress={pickImage}>
+            <Text style={styles.photoButtonText}>Add a photo</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.photoButton} onPress={pickImage}>
-          <Text style={styles.photoButtonText}>📷 Add Image</Text>
-        </TouchableOpacity>
+          {imageUri && (
+            <Image source={{ uri: imageUri }} style={styles.previewImage} />
+          )}
 
-        {imageUri && (
-          <Image source={{ uri: imageUri }} style={styles.previewImage} />
-        )}
+          <TouchableOpacity style={styles.saveButton} onPress={addNote}>
+            <Text style={styles.saveButtonText}>Save notes</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.saveButton} onPress={addNote}>
-          <Text style={styles.saveButtonText}>💾 Save Note</Text>
-        </TouchableOpacity>
+          <View style={styles.sectionDivider} />
 
-        <Text style={styles.subTitle}>📚 Your Saved Notes</Text>
-
-        {notes.map((note) => (
-          <View key={note.id} style={styles.note}>
-            <Text style={styles.noteText}>{note.text}</Text>
-            {note.imageUri && (
-              <Image source={{ uri: note.imageUri }} style={styles.noteImage} />
-            )}
-          </View>
-        ))}
+          <ScrollView style={styles.notesContainer}>
+            {notes.map((note, index) => (
+              <View key={note.id}>
+                <View style={styles.note}>
+                  {note.text && <Text style={styles.noteText}>{note.text}</Text>}
+                  {note.imageUri && (
+                    <Image source={{ uri: note.imageUri }} style={styles.noteImage} />
+                  )}
+                </View>
+                {index < notes.length - 1 && <View style={styles.divider} />}
+              </View>
+            ))}
+          </ScrollView>
+        </View>
       </View>
+
+      <View style={styles.TabNavigationBar}>
+                <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Menu')}>
+                  <Image style={styles.tabIcon} source={require('./assets/MenuButtonImage.png')} />
+                </TouchableOpacity>
+              
+                <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Notes')}>
+                  <Image style={styles.tabIconStar} source={require('./assets/StarPlusImage.png')} />
+                </TouchableOpacity>
+              
+                <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Motivation')}>
+                  <Image style={styles.tabIconHeart} source={require('./assets/HeartFoto.png')} />
+                </TouchableOpacity>
+              </View>
+
     </SafeAreaView>
   );
 }
@@ -105,98 +127,142 @@ export default function NotesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#6F275F',
-  },
-  wrapper: {
-    backgroundColor: '#C2CCE4',
-    borderRadius: 20,
-    margin: 20,
-    padding: 20,
-    flexGrow: 1,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#6F275F',
-    textAlign: 'center',
-    marginBottom: 15,
-  },
-  input: {
-    backgroundColor: '#fff',
-    borderColor: '#ccc',
-    borderWidth: 1.2,
-    borderRadius: 12,
-    padding: 15,
-    minHeight: 100,
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  photoButton: {
-    backgroundColor: '#C2CCE4',
-    padding: 12,
-    borderRadius: 12,
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  photoButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  previewImage: {
-    width: '100%',
-    height: 180,
-    borderRadius: 12,
-    marginBottom: 10,
-  },
-  saveButton: {
-    backgroundColor: '#6F275F',
-    padding: 14,
-    borderRadius: 14,
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  saveButtonText: {
-    color: '#C2CCE4',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  subTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#6F275F',
-    marginBottom: 10,
-    marginTop: 10,
-  },
-  note: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 12,
-    marginBottom: 15,
-  },
-  noteText: {
-    fontSize: 16,
-    marginBottom: 8,
-    color: '#333',
-  },
-  noteImage: {
-    width: '100%',
-    height: 160,
-    borderRadius: 10,
+    backgroundColor: '#2B3A6C',
   },
   buttonBack: {
     position: 'absolute',
     top: 35,
     left: 20,
-    backgroundColor: '#F8D6EE',
-    borderRadius: 10,
-    borderWidth: 1,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    backgroundColor: '#2B3A6C',
+    padding: 8,
+    borderRadius: 8,
     zIndex: 10,
+    borderColor: '#C2CCE4',
+    borderWidth: 1,
   },
   backText: {
+    color: '#C2CCE4',
+    fontSize: 16,
     fontWeight: 'bold',
-    color: '#6F275F',
   },
+  contentWrapper: {
+    flex: 1,
+    padding: 15,
+    paddingTop: 70, 
+  },
+  notesArea: {
+    flex: 1,
+    backgroundColor: '#C2CCE4',
+    borderRadius: 20,
+    padding: 15,
+    marginTop: 10,
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    color: '#2B3A6C',
+    textAlign: 'center',
+    marginBottom: 15,
+  },
+  input: {
+    backgroundColor: '#fff',
+    borderColor: '#2B3A6C',
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 15,
+    minHeight: 100,
+    fontSize: 16,
+    marginBottom: 15,
+  },
+  photoButton: {
+    backgroundColor: '#2B3A6C',
+    padding: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  photoButtonText: {
+    color: '#C2CCE4',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  previewImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 12,
+    marginBottom: 15,
+  },
+  saveButton: {
+    backgroundColor: '#2B3A6C',
+    padding: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  saveButtonText: {
+    color: '#C2CCE4',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  sectionDivider: {
+    borderBottomColor: '#2B3A6C',
+    borderBottomWidth: 1,
+    marginVertical: 15,
+    width: '100%',
+  },
+  note: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 15,
+    marginBottom: 15,
+  },
+  noteImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 12,
+    marginTop: 10,
+  },
+  divider: {
+    borderBottomColor: '#2B3A6C',
+    borderBottomWidth: 1,
+    marginVertical: 10,
+    width: '100%',
+  },
+  TabNavigationBar: {
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  backgroundColor: '#384476',
+  width: '100%',
+  height: '8%',
+  borderTopWidth: 0.5,
+  borderColor: '#ffffff',
+  position: 'absolute',
+  bottom: 0,
+},
+
+tabButton: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+tabIcon: {
+  width: 40,
+  height: 40,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
+tabIconStar: {
+  width: 70,
+  height: 50,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
+tabIconHeart: {
+  width: 75,
+  height: 50,
+  resizeMode: 'contain',
+  position: 'absolute',
+},
 });

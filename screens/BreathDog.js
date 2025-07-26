@@ -1,117 +1,57 @@
-import React, { useState, useRef } from "react";
 import {
   ImageBackground,
   View,
   Text,
   SafeAreaView,
   StyleSheet,
-  Animated,
+  Image,
+  ScrollView,
   TouchableOpacity,
+  Alert,
+  Switch,
+  Button,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
-  const shouldStop = useRef(false);
+
   const navigation = useNavigation();
-  const [currentPhase, setCurrentPhase] = useState("");
-  const [isRunning, setIsRunning] = useState(false);
-  const squareAnim = useRef(new Animated.ValueXY({ x: 0, y: 20 })).current;
-
-  const phases = ["Hold", "Breathe in", "Hold", "Breathe out"];
-  const directions = [
-    { x: 0, y: 20 },
-    { x: 80, y: 20 },
-    { x: 80, y: 100 },
-    { x: 0, y: 100 },
-  ];
-
-  const duration = 3500;
-  const totalCycles = 4;
-
-  const startBreathing = async () => {
-    if (isRunning) return;
-    shouldStop.current = false;
-    setIsRunning(true);
-
-    for (let i = 0; i < totalCycles * directions.length; i++) {
-      const stepIndex = i % directions.length;
-      setCurrentPhase(phases[stepIndex]);
-
-      await animateTo(directions[stepIndex]);
-
-      if (shouldStop.current) {
-        setCurrentPhase("Stopped");
-        setIsRunning(false);
-        return;
-      }
-    }
-
-    setCurrentPhase("Done");
-    setIsRunning(false);
-  };
-
-  const stopBreathing = () => {
-    if (isRunning) {
-      shouldStop.current = true;
-    }
-  };
-
-  const animateTo = (coords) => {
-    return new Promise((resolve) => {
-      Animated.timing(squareAnim, {
-        toValue: coords,
-        duration: duration,
-        useNativeDriver: false,
-      }).start(() => resolve());
-    });
-  };
+  const handlePress = () => navigation.navigate("MainTabs");
 
   return (
     <SafeAreaView style={styles.container}>
+
+      <ImageBackground style={styles.container1} source={require('./assets/breathebackground.png')}>
       <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
-        <Text style={styles.buttonText5}>ㅤ&#60;ㅤ</Text>
-      </TouchableOpacity>
-
-      <ImageBackground
-        style={styles.container1}
-        source={require("./assets/breathingex.png")}
-      >
-        <View style={styles.innerContent}>
-          <View style={styles.boxArea}>
-            <View style={styles.squarePath} />
-            <Animated.View
-              style={[
-                styles.movingCircle,
-                {
-                  transform: [
-                    { translateX: squareAnim.x },
-                    { translateY: squareAnim.y },
-                  ],
-                },
-              ]}
-            />
-          </View>
-
-          <Text style={styles.phase}>{currentPhase}</Text>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={startBreathing}
-            disabled={isRunning}
-          >
-            <Text style={styles.buttonText}>Start</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={stopBreathing} disabled={!isRunning}>
-            <Text style={styles.buttonText1}>Stop</Text>
-          </TouchableOpacity>
-
-          <Text style={styles.description}>
-            This is an easy breathing exercise to help you feel calm and relaxed.
-            Just follow the moving square.
-          </Text>
-        </View>
+                    <Text style={styles.buttonText5}> 
+                    ㅤ&#60;ㅤ
+                    </Text>
+                  </TouchableOpacity>
+      <View style={styles.start}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Breathingex')}>
+                  <Text style={styles.buttonText}>START</Text>
+                </TouchableOpacity>
+                </View>
+    
       </ImageBackground>
+      <View>
+        
+      </View>
+
+      <View style={styles.TabNavigationBar}>
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('MenuDog')}>
+          <Image style={styles.tabIcon} source={require('./assets/MenuButtonImage.png')} />
+        </TouchableOpacity>
+      
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('NotesDog')}>
+          <Image style={styles.tabIconStar} source={require('./assets/StarPlusImage.png')} />
+        </TouchableOpacity>
+      
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('MotivationDog')}>
+          <Image style={styles.tabIconHeart} source={require('./assets/HeartFoto.png')} />
+        </TouchableOpacity>
+      </View>
+
     </SafeAreaView>
   );
 }
@@ -119,91 +59,122 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: "#451C63",
+    
     height: "100%",
     justifyContent: "center",
   },
-  buttonBack: {
-    position: "absolute",
-    top: 45,
-    left: 15,
-    backgroundColor: "#D5CEEF",
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: "black",
-    zIndex: 2,
-  },
-  buttonText5: {
-    color: "black",
-    fontSize: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
   container1: {
-    backgroundColor: "#A7A3F1",
-    justifyContent: "flex-start",
+
+    justifyContent: "center",
     alignItems: "center",
     width: 400,
-    height: 750,
+    height: 800,
     borderRadius: 20,
     marginTop: 35,
+    position: "absolute"
+  },
+  start: {
+    backgroundColor: "#384476",
+    borderRadius: 20,
+    width: '60%',
+    height: '8%',
+    borderWidht: 60,
+    borderColor: 'black',
+    bottom: -150
+  },
+  backgroundimage: {
+    height : "80%",
+    width: "80%",
     position: "absolute",
-  },
-  innerContent: {
-    marginTop: "55%",
-    alignItems: "center",
-  },
-  boxArea: {
-    width: 120,
-    height: 140,
-    marginBottom: 30,
-    position: "relative",
-  },
-  squarePath: {
-    position: "absolute",
-    width: 100,
-    height: 100,
-    borderWidth: 2,
-    borderColor: "#451C63",
-    top: 20,
-    left: 0,
-  },
-  movingCircle: {
-    width: 20,
-    height: 20,
-    backgroundColor: "#451C63",
-    position: "absolute",
-    borderRadius: 50,
-    left: 0,
-  },
-  phase: {
-    fontSize: 24,
-    marginBottom: 20,
-    color: "#4b0082",
-  },
-  button: {
-    backgroundColor: "#451C63",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 10,
-    marginTop: 10,
   },
   buttonText: {
-    color: "#fff",
-    fontSize: 20,
+   color: '#fff',
+   
+   justifyContent: 'center',
+   textAlign: 'center',
+   fontSize: 35,
+   padding: '1.9%'
+
   },
-  buttonText1: {
-    marginTop: 20,
-    fontSize: 20,
-    color: "#451C63",
-    fontWeight: "bold",
+  buttonBack: {
+    position: 'absolute',
+    top: 25,
+    left: 25,
+    backgroundColor: '#384476',
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: 'black',
   },
-  description: {
-    marginTop: 30,
-    textAlign: "center",
-    fontSize: 16,
-    color: "#333",
-    width: 300,
-    fontWeight: "bold",
+  buttonText5: {
+    color: "#ffff"
   },
-});
+  TabNavigationBar: {
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  backgroundColor: '#8B4B99',
+  width: '100%',
+  height: '8%',
+  borderTopWidth: 0.5,
+  borderColor: '#ffffff',
+  position: 'absolute',
+  bottom: 0,
+},
+
+tabButton: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+tabIcon: {
+  width: 40,
+  height: 40,
+  resizeMode: 'contain',
+},
+tabIconStar: {
+  width: 70,
+  height: 50,
+  resizeMode: 'contain',
+},
+tabIconHeart: {
+  width: 75,
+  height: 50,
+  resizeMode: 'contain',
+},
+TabNavigationBar: {
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  backgroundColor: '#384476',
+  width: '100%',
+  height: '8%',
+  borderTopWidth: 0.5,
+  borderColor: '#ffffff',
+  position: 'absolute',
+  bottom: 0,
+},
+
+tabButton: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+tabIcon: {
+  width: 40,
+  height: 40,
+  resizeMode: 'contain',
+},
+tabIconStar: {
+  width: 70,
+  height: 50,
+  resizeMode: 'contain',
+},
+tabIconHeart: {
+  width: 75,
+  height: 50,
+  resizeMode: 'contain',
+},
+}
+);

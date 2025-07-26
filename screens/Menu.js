@@ -2,7 +2,6 @@ import { View, I18nManager, Image, Text, SafeAreaView, StyleSheet, TouchableOpac
 import { useNavigation } from '@react-navigation/native';
 
 export default function ProfileScreen() {
-  
   const navigation = useNavigation();
   const handlePress = () => navigation.navigate("MainTabs");
 
@@ -32,16 +31,27 @@ export default function ProfileScreen() {
             <Text style={styles.buttonText}>QUESTIONS</Text>
           </TouchableOpacity>
         </View>
-
-        <View style={styles.buttonView}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Notes')}>
-            <Text style={styles.buttonText}>MY NOTES</Text>
-          </TouchableOpacity>
-        </View>
       </View>
 
-      <Image style={styles.photoCat} source={require('./assets/CatBackFone.png')} />
-      <Image style={styles.photoCat} source={require('./assets/CatPNG.png')} />
+      <Image style={styles.photoCat} source={require('./assets/CatFff.png')} />
+
+      <Text style={styles.catMessage}>
+        “Today is definitely your day - just believe and move forward”
+      </Text>
+
+      <View style={styles.TabNavigationBar}>
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Menu')}>
+          <Image style={styles.tabIcon} source={require('./assets/MenuButtonImage.png')} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Notes')}>
+          <Image style={styles.tabIconStar} source={require('./assets/StarPlusImage.png')} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Motivation')}>
+          <Image style={styles.tabIconHeart} source={require('./assets/HeartFoto.png')} />
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
@@ -51,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#6F275F',
     position: 'relative',
+    zIndex: -3,
   },
 
   menuText: {
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
 
   buttonView: {
     backgroundColor: '#F8D6EE',
-    height: '15%',
+    height: '17%',
     width: '75%',
     borderRadius: 15,
     borderColor: 'black',
@@ -86,6 +97,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: '5%',
+    bottom: '2.5%'
   },
 
   button: {
@@ -103,19 +116,72 @@ const styles = StyleSheet.create({
 
   photoCat: {
     position: 'absolute',
-    width: '85%',
-    height: '40%',
-    bottom: '-15.5%',
-    marginLeft: '35%',
+    width: '60%',
+    height: '30%',
+    bottom: '1.5%',
+    left: '40%',
     resizeMode: 'contain',
+    zIndex: -1,
   },
-     backFoto: {
+
+  catMessage: {
+    position: 'absolute',
+    bottom: '27%',
+    left: '5%',
+    right: '5%',
+    textAlign: 'center',
+    color: '#F8D6EE',
+    fontSize: 16,
+    fontStyle: 'italic',
+    fontWeight: '600',
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    borderRadius: 15,
+    padding: 10,
+    overflow: 'hidden',
+  },
+
+  backFoto: {
     position: 'absolute',
     width: '100%',
     height: '115%',
     resizeMode: 'cover',
-    bottom: '-3%',
+    bottom: '0%',
     opacity: 0.1,
-},
+    zIndex: -2,
+  },
 
+  TabNavigationBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#8B4B99',
+    width: '100%',
+    height: '8%',
+    borderTopWidth: 0.5,
+    borderColor: '#ffffff',
+    position: 'absolute',
+    bottom: 0,
+  },
+
+  tabButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  tabIcon: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+  },
+  tabIconStar: {
+    width: 70,
+    height: 50,
+    resizeMode: 'contain',
+  },
+  tabIconHeart: {
+    width: 75,
+    height: 50,
+    resizeMode: 'contain',
+  },
 });

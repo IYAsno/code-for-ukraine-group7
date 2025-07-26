@@ -36,6 +36,20 @@ export default function ProfileScreen() {
 
 
         </View>
+
+        <View style={styles.TabNavigationBar}>
+                <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Menu')}>
+                  <Image style={styles.tabIcon} source={require('./assets/MenuButtonImage.png')} />
+                </TouchableOpacity>
+              
+                <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Notes')}>
+                  <Image style={styles.tabIconStar} source={require('./assets/StarPlusImage.png')} />
+                </TouchableOpacity>
+              
+                <TouchableOpacity style={styles.tabButton} onPress={() => navigation.navigate('Motivation')}>
+                  <Image style={styles.tabIconHeart} source={require('./assets/HeartFoto.png')} />
+                </TouchableOpacity>
+              </View>
     </SafeAreaView>
   );
 }
@@ -50,17 +64,17 @@ const styles = StyleSheet.create({
   ground: {
     backgroundColor: "#F8D6EE",
     width: '95%',
-    height: '65%',
+    height: '55%',
     borderRadius: 15,
     zIndex: 2,
     marginTop: "-40%",
-    bottom: '2%',
+    bottom: '10%',
   },
   photoCat: {
     borderRadius: 15,
     flex:1,
     aspectRatio: 1,
-    margin: '7.5%',
+    margin: '21.5%',
     bottom: '-1%',
   },
   day: {
@@ -115,5 +129,39 @@ const styles = StyleSheet.create({
     bottom: '-12%',
     marginLeft: '30%',
   },
+  TabNavigationBar: {
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  backgroundColor: '#8B4B99',
+  width: '100%',
+  height: '8%',
+  borderTopWidth: 0.5,
+  borderColor: '#ffffff',
+  position: 'absolute',
+  bottom: 0,
+},
+
+tabButton: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+tabIcon: {
+  width: 40,
+  height: 40,
+  resizeMode: 'contain',
+},
+tabIconStar: {
+  width: 70,
+  height: 50,
+  resizeMode: 'contain',
+},
+tabIconHeart: {
+  width: 75,
+  height: 50,
+  resizeMode: 'contain',
+},
 }
 );
